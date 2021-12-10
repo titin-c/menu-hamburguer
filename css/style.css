@@ -1,2 +1,17 @@
 /* CSS Document */
+html,body{height: 100%;}
 body{font-family: Helvetica,Arial,sans-serif !important;}
+
+.logo-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+a.logo {
+    text-decoration: none;
+    color: #000;
+    font-size: 44px;
+}

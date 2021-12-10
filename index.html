@@ -15,8 +15,8 @@
 		<div class="header-top">
 		<!--logo-->
 			<div class="logo-container">
-				<a href="#">Logo MenúTitín</a> 
-				<a href="#" id="menuOpen">Menú</a>
+				<a href="#" class="logo">Logo MenúTitín</a> 
+				<a href="#" class="menu-toggle" id="menuOpen"><div class="menu-icon"><span class="line"></span><span class="line"></span><span class="line"></span></div><span>Menú</span></a>
 			</div>
 		</div>
 		<!-- fin header-top -->
@@ -62,13 +62,34 @@
 		          <li class="page_item"><a href="#">Lorem Ipsum</a></li>
 		          <li class="page_item"><a href="#">Page A</a></li>
 		          <li class="page_item"><a href="#">Page B</a></li>
+					<li class="page_item"><a href="#">Lorem Ipsum</a></li>
+		          <li class="page_item"><a href="#">Page A</a></li>
+		          <li class="page_item"><a href="#">Page B</a></li>
+					<li class="page_item"><a href="#">Lorem Ipsum</a></li>
+		          <li class="page_item"><a href="#">Page A</a></li>
+		          <li class="page_item"><a href="#">Page B</a></li>
+					<li class="page_item"><a href="#">Lorem Ipsum</a></li>
+		          <li class="page_item"><a href="#">Page A</a></li>
+		          <li class="page_item"><a href="#">Page B</a></li>
+					<li class="page_item"><a href="#">Lorem Ipsum</a></li>
+		          <li class="page_item"><a href="#">Page A</a></li>
+		          <li class="page_item"><a href="#">Page B</a></li>
+					<li class="page_item"><a href="#">Lorem Ipsum</a></li>
+		          <li class="page_item"><a href="#">Page A</a></li>
+		          <li class="page_item"><a href="#">Page B</a></li>
 	            </ul>
 	          </div>
 	        </nav>
 	      </div>
 		  <!-- fin menu-burguer -->
-		  <!--social-->
-		  <!--legal--></div>
+		  
+		  <div class="header-menu-pie">
+			<!--social-->
+		    <div class="header-menu-social"><a href="#">Facebook</a> - <a href="#">Twitter</a></div>
+		    <!--legal-->
+		    <div class="header-menu-legal">Titin colomer 2021 &copy;</div>
+          </div>
+		</div>
     </header>
 		<h1>menu hamburguesa jabascript</h1>
 	esto es un menú estilo hamburguesa con submenus hecho con javascript css y html
@@ -78,10 +99,14 @@
 		function toggleMenuPpal() {
 			var header = document.getElementById("header-menus");
 			header.classList.toggle("cerrado")
+			var cerrar= document.getElementById("menuOpen");
+			cerrar.classList.toggle("cerrado")
   		}
 		var cerrarMenu = document.getElementById("menuOpen");
 		cerrarMenu.addEventListener("click",toggleMenuPpal , false);	
 		
+		//funcion para cerrar concualquier clic en el documento
+
 		
 		
 		//MENU-BURGUER
@@ -93,7 +118,7 @@ for (index = 0; index < x.length; index++) {
 	
 	var navArrow = document.createElement('span');
 	navArrow.className = 'sub-nav-toggle';
-	navArrow.innerHTML = ' <span class="right-arrow">--></span> ';
+	navArrow.innerHTML = ' <span class="right-arrow"><img src="img/arrow-right.svg" alt="habrir menú" width="20px" height="20px"></span> ';
 	x[index].parentNode.insertBefore(navArrow, x[index].nextSibling);
 	
 }
@@ -107,11 +132,7 @@ for(var i in elements) {
 			
 		}
 	}
-}
-		
-
-											 
-											 
+}						 
 //seleccionamos todos los ul con class 'children'				 
 var submenus = document.querySelectorAll('ul.children ');
 		for (var z=0; z < submenus.length ; z++){
@@ -120,7 +141,7 @@ var submenus = document.querySelectorAll('ul.children ');
 			//generamos el li de cerrar el submenú con su título y todo
 			var li = document.createElement('li');
 			li.className = 'volver-toggle';
-			li.innerHTML = '<span class="left-arrow"><--</span> ' + titulos;
+			li.innerHTML = '<span class="left-arrow"><img src="img/arrow-left.svg" alt="habrir menú" width="30px" height="30px"></span> ' + titulos;
 			
 			submenus[z].insertAdjacentElement("afterbegin", li);
 			
@@ -133,6 +154,30 @@ var submenus = document.querySelectorAll('ul.children ');
 				volver[j].addEventListener("click", function(){this.parentElement.classList.toggle('active');}, false);
 		}
 		
+		
+		//tamaño del menu hamburguesa
+		var tamañoMenuTotal = document.getElementById("site-navigation").clientHeight ;
+  		var tamañoPantalla = document.querySelector("body").clientHeight ;
+		var tamañoHeader = document.querySelector("header").clientHeight ;
+		var tamañoBuscador = document.querySelector(".header-menu-top").clientHeight ;
+		var tamañoPie = document.querySelector(".header-menu-pie").clientHeight ;
+		
+		tamañoPantalla  =tamañoPantalla-tamañoHeader-tamañoBuscador-tamañoPie-2; // 5 para corregir
+		
+  
+  		
+		if(tamañoMenuTotal>tamañoPantalla){
+			//document.getElementById("site-navigation").style.height = tamañoPantallaPx/2 ;
+			
+			var canvas = document.getElementById("site-navigation");
+			canvas.setAttribute("style", "height:"+tamañoPantalla+"px");
+		   	console.log(tamañoMenuTotal+" - "+tamañoPantalla)
+		   }
+
+		
+		
+		
 	</script>
+	<link href="js/menu-hamburguesa.js"  type="text/javascript">
 </body>
 </html>
