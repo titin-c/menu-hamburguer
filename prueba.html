@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Documento sin título</title>
+	<link href="css/normalize.css" rel="stylesheet" type="text/css">
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+	<link href="css/menu-hamburguesa.css" rel="stylesheet" type="text/css">
+
+		<style>
+	
+.sub-nav-toggle {
+	cursor: pointer;
+}
+	</style>
+</head>
+
+<body>
+    <div class="menu-burguer">
+      <nav id="site-navigation" class="main-navigation">
+        <div id="primary-menu" >
+          <ul class="menu">
+            <li class="page_item"><a href="#">Blog</a></li>
+            <li class="page_item"><a href="#">Front Page</a></li>
+            <li class="page_item"><a href="#">Sample Page</a></li>
+            <li class="page_item page_item_has_children"><a href="#">About The Tests</a>
+              <ul class="menu children">
+                <li class="page_item "><a href="#">Page Image Alignment</a></li>
+                <li class="page_item"><a href="#">Page Markup And Formatting</a></li>
+                <li class="page_item"><a href="#">Clearing Floats</a></li>
+                <li class="page_item"><a href="#">Page with comments</a></li>
+                <li class="page_item"><a href="#">Page with comments disabled</a></li>
+                </ul>
+              </li>
+            <li class="page_item page_item_has_children"><a href="#">Level 1</a>
+              <ul class="menu children">
+                <li class="page_item page_item_has_children"><a href="#">Level 2</a>
+                  <ul class="menu children">
+                    <li class="page_item"><a href="#">Level 3</a></li>
+                    <li class="page_item"><a href="#">Level 3a</a></li>
+                    <li class="page_item"><a href="#">Level 3b</a></li>
+                    </ul>
+                  </li>
+                <li class="page_item"><a href="#">Level 2a</a></li>
+                <li class="page_item"><a href="#">Level 2b</a></li>
+                </ul>
+              </li>
+            <li class="page_item"><a href="#">Lorem Ipsum</a></li>
+            <li class="page_item"><a href="#">Page A</a></li>
+            <li class="page_item"><a href="#">Page B</a></li>
+          </ul>
+        </div>
+  </nav>
+    </div>
+	<script>
+		//seleccionamos todos los li con class 'page_item_has_children'
+var x = document.body.querySelectorAll('li.page_item_has_children > a');
+var index = 0;
+		//a cada uno de ellos le añadimos el botón de togglear
+for (index = 0; index < x.length; index++) {
+	
+	var navArrow = document.createElement('span');
+	navArrow.className = 'sub-nav-toggle';
+	navArrow.innerHTML = '<b>[toggle]</b>';
+	x[index].parentNode.insertBefore(navArrow, x[index].nextSibling);
+	
+}
+//al boton de togglear le añadimos la funcion de cambiar class 'active'
+var elements = document.querySelectorAll('.sub-nav-toggle');
+
+for(var i in elements) {
+	if(elements.hasOwnProperty(i)) {
+		elements[i].onclick = function() {
+			this.parentElement.querySelector('.children').classList.toggle("active");
+			
+		}
+	}
+}
+		
+
+											 
+											 
+//seleccionamos todos los ul con class 'children'				 
+var submenus = document.querySelectorAll('ul.children ');
+		for (var z=0; z < submenus.length ; z++){
+			//camptamos el contenido del li padre para que luego sea el título del submenú
+			titulos= submenus[z].parentElement.innerHTML;
+			//generamos el li de cerrar el submenú con su título y todo
+			var li = document.createElement('li');
+			li.className = 'volver-toggle';
+			li.innerHTML = '<b>[cerrar]</b>' + titulos;
+			
+			submenus[z].insertAdjacentElement("afterbegin", li);
+			
+			
+		}
+		//generamos todos los botones de volver de los submenús
+			var volver =  document.querySelectorAll('.volver-toggle');
+			for (var j=0; j < volver.length ; j++){
+				//les añadimos la funcion cerrar al parent element
+				volver[j].addEventListener("click", function(){this.parentElement.classList.toggle('active');}, false);
+		}
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+/* CSS Document */
+
+.header-menus.cerrado{
+	
+	left: -350px;
+	opacity: 0;
+    
+}
+.header-menus{
+	width: 350px;
+	max-width: 90%;
+	position: absolute;
+	left: 0px;
+	opacity: 1;
+	-webkit-transition: all 3ms ease;
+-moz-transition: all .3s ease;
+-ms-transition: all .3s ease;
+-o-transition: all .3s ease;
+transition: all .3s ease;
+}
+/* menu burguer css */
+.menu-burguer{
+	position: relative;
+	width: 100%;
+	background-color: #eee;
+	height: 100%;
+	overflow: hidden;
+}
+.menu-burguer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+	width: 100%;
+	height: 100%;
+}
+.menu-burguer li{
+	padding: 15px;
+	border-bottom: solid 1px #ccc;
+}
+.menu-burguer li.volver-toggle a{
+	text-decoration: none;
+	color:#000;
+	font-weight: bold;
+	font-size: 1.2em;
+}
+ul.menu.children {
+    position: absolute;
+    width: 100%;
+    background-color: #fff;
+    left: 400px;
+	top: 0px;
+	bottom: 0;
+	right: 0;
+	opacity: 0;
+    -webkit-transition: all 3ms ease;
+-moz-transition: all .3s ease;
+-ms-transition: all .3s ease;
+-o-transition: all .3s ease;
+transition: all .3s ease;
+}
+ul.menu.active {
+	left: 0;
+    opacity: 1;
+	background-color: #eee;}
+.volver-toggle .sub-nav-toggle{display:none}
