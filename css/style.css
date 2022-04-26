@@ -1,6 +1,14 @@
 /* CSS Document */
 html,body{height: 100%;}
 body{font-family: Helvetica,Arial,sans-serif !important;}
+body{
+	background: #458caa;
+background: -moz-linear-gradient(-45deg,  #458caa 0%, #d7d5b9 53%, #e5cda9 76%, #e99c4a 96%, #a86530 100%);
+background: -webkit-linear-gradient(-45deg,  #458caa 0%,#d7d5b9 53%,#e5cda9 76%,#e99c4a 96%,#a86530 100%);
+background: linear-gradient(135deg,  #458caa 0%,#d7d5b9 53%,#e5cda9 76%,#e99c4a 96%,#a86530 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#458caa', endColorstr='#a86530',GradientType=1 );
+
+}
 
 .logo-container {
     display: flex;
@@ -15,3 +23,4 @@ a.logo {
     color: #000;
     font-size: 44px;
 }
+.body-content{padding:10px}
