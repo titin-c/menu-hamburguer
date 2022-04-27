@@ -55,6 +55,7 @@ transform: rotate(45deg);
 	width: 350px;
 	max-width: 90%;
 	position: absolute;
+    top:0;
 	left: 0px;
 	opacity: 1;
 	-webkit-box-shadow: 5px 10px 10px 0 rgba(0,0,0,.1);
@@ -149,7 +150,7 @@ li.volver-toggle {
     background: #ffffff54;
     padding: 15px;
 }
-span.sub-nav-toggle {
+ span.sub-nav-toggle {
     padding: 10px 15px;
     cursor: pointer;
 }
@@ -193,6 +194,7 @@ li.page_item a {
     text-transform: uppercase;
     font-size: .8em;
     letter-spacing: .1em;
+    width: 90%;
 }
 li.page_item.page_item_has_children {
     display: flex;
@@ -201,20 +203,21 @@ li.page_item.page_item_has_children {
     align-items: center;
 }
 
+
 /*capa off*/
 .capa-off {
     position: absolute;
-    background: #00000012;
+    background: #00000099;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
 	z-index: 1;
 	-webkit-transition: all 5ms ease;
--moz-transition: all .5s ease;
--ms-transition: all .5s ease;
--o-transition: all .5s ease;
-transition: all .5s ease;
+-moz-transition: all 1s ease;
+-ms-transition: all 1s ease;
+-o-transition: all 1s ease;
+transition: all 1s ease;
 	
 }
 .capa-off.off {

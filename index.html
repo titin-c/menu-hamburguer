@@ -13,7 +13,7 @@
 <body>
 	<header class="header" id="header">
 		<!--seccion superior de la cabecera-->
-		<div class="header-top">
+		<div class="header-top pi">
 		<!--logo-->
 			<div class="logo-container">
 				<a href="#" class="logo">Logo MenúTitín</a> 
@@ -40,8 +40,8 @@
 		          <li class="page_item"><a href="#">Blog</a></li>
 		          <li class="page_item"><a href="#">Front Page</a></li>
 		          <li class="page_item"><a href="#">Sample Page</a></li>
-		          <li class="page_item page_item_has_children"><a href="#">About The Tests</a>
-		            <ul class="menu children">
+		          <li class="page_item"><a href="#">About The Tests</a>
+		            <ul class="menu">
 		              <li class="page_item "><a href="#">Page Image Alignment</a></li>
 		              <li class="page_item"><a href="#">Page Markup And Formatting</a></li>
 		              <li class="page_item"><a href="#">Clearing Floats</a></li>
@@ -49,17 +49,23 @@
 		              <li class="page_item"><a href="#">Page with comments disabled</a></li>
 		              </ul>
 		            </li>
-		          <li class="page_item page_item_has_children"><a href="#">Level 1</a>
-		            <ul class="menu children">
-		              <li class="page_item page_item_has_children"><a href="#">Level 2</a>
-		                <ul class="menu children">
-		                  <li class="page_item"><a href="#">Level 3</a></li>
-		                  <li class="page_item"><a href="#">Level 3a</a></li>
-		                  <li class="page_item"><a href="#">Level 3b</a></li>
+		          <li class="page_item"><a href="#">Level 1</a>
+		            <ul class="menu">
+		              <li class="page_item"><a href="#">Level 1a</a>
+		                <ul class="menu ">
+		                  <li class="page_item"><a href="#">Level 1a1</a></li>
+		                  <li class="page_item"><a href="#">Level 1a2</a></li>
+		                  <li class="page_item"><a href="#">Level 1a3</a>
+							<ul class="menu ">
+								<li class="page_item"><a href="#">Level 1a31</a></li>
+								<li class="page_item"><a href="#">Level 1a32</a></li>
+								<li class="page_item"><a href="#">Level 1a33</a></li>
+								</ul>
+							</li>
 		                  </ul>
 		                </li>
-		              <li class="page_item"><a href="#">Level 2a</a></li>
-		              <li class="page_item"><a href="#">Level 2b</a></li>
+		              <li class="page_item"><a href="#">Level 1b</a></li>
+		              <li class="page_item"><a href="#">Level 1c</a></li>
 		              </ul>
 		            </li>
 		          <li class="page_item"><a href="#">Lorem Ipsum</a></li>
@@ -90,17 +96,18 @@
 <script>
 		//abrir y cerrar menú principal
 		function toggleMenuPpal() {
-			var header = document.getElementById("header-menus");
-			header.classList.toggle("cerrado")
-			var cerrar= document.getElementById("menuOpen");
-			cerrar.classList.toggle("cerrado");
+			const getHeader = document.getElementById("header-menus");
+			getHeader.classList.toggle("cerrado")
+			const getMenuOpen= document.getElementById("menuOpen");
+			getMenuOpen.classList.toggle("cerrado");
 			
 			//la capa que oscurece el fondo
-			var capaOff = document.getElementById("capa-off");
+			const capaOff = document.getElementById("capa-off");
 			capaOff.classList.toggle("off")
 			capaOff.addEventListener("click",toggleMenuPpal , false);
   		}
-		var cerrarMenu = document.getElementById("menuOpen");
+		  
+		  const cerrarMenu = document.getElementById("menuOpen");
 		cerrarMenu.addEventListener("click",toggleMenuPpal , false);	
 		
 		//funcion para cerrar concualquier clic en el documento
@@ -108,70 +115,104 @@
 		
 		
 		//MENU-BURGUER
-		//seleccionamos todos los li con class 'page_item_has_children'
-var x = document.body.querySelectorAll('li.page_item_has_children > a');
-var index = 0;
-		//a cada uno de ellos le añadimos el botón de togglear
-for (index = 0; index < x.length; index++) {
-	
-	var navArrow = document.createElement('span');
-	navArrow.className = 'sub-nav-toggle';
-	navArrow.innerHTML = ' <span class="right-arrow"><img src="img/arrow-right.svg" alt="habrir menú" width="20px" height="20px"></span> ';
-	x[index].parentNode.insertBefore(navArrow, x[index].nextSibling);
-	
+
+		//obtenemos todos los objetos que tengan la classe 'menu' 
+		let getMenu = document.getElementsByClassName('menu');
+		// de ellos obtenemos todos los objetos que tengan dentro alguna classe 'menu' // .menu .menu
+		for ( i = 0; i < getMenu.length; i++) {
+			getMenu = getMenu[i].getElementsByClassName('menu');
+			
+			for ( i = 0; i < getMenu.length; i++) {
+			// y le añadimos la class 'children' // .menu.children
+			getMenu[i].classList.add('children');
 }
-//al boton de togglear le añadimos la funcion de cambiar class 'active'
-var elements = document.querySelectorAll('.sub-nav-toggle');
+}
 
-for(var i in elements) {
-	if(elements.hasOwnProperty(i)) {
-		elements[i].onclick = function() {
-			this.parentElement.querySelector('.children').classList.toggle("active");
+		//obtenemos todos los objetos que tengan la class 'children'  // .menu.children
+		const getChildren = document.querySelectorAll('ul.children ');
+		//añadimos a su padre la class page_item_has_children
+		for ( i = 0; i < getChildren.length; i++) {
+			getChildren[i].parentElement.classList.add('page_item_has_children');
+		
 			
-		}
-	}
-}						 
-//seleccionamos todos los ul con class 'children'				 
-var submenus = document.querySelectorAll('ul.children ');
-		for (var z=0; z < submenus.length ; z++){
 			//camptamos el contenido del li padre para que luego sea el título del submenú
-			titulos= submenus[z].parentElement.innerHTML;
+			const getTitulos= getChildren[i].parentElement.innerHTML;
+			
 			//generamos el li de cerrar el submenú con su título y todo
-			var li = document.createElement('li');
-			li.className = 'volver-toggle';
-			li.innerHTML = '<span class="left-arrow"><img src="img/arrow-left.svg" alt="habrir menú" width="30px" height="30px"></span> ' + titulos;
+			const createLi = document.createElement('li');
+			createLi.className = 'volver-toggle';
+			createLi.innerHTML = '<span class="left-arrow"><img src="img/arrow-left.svg" alt="habrir menú" width="30px" height="30px"></span> ' + getTitulos;
 			
-			submenus[z].insertAdjacentElement("afterbegin", li);
+			getChildren[i].insertAdjacentElement("afterbegin", createLi);
 			
-			
-		}
-		//generamos todos los botones de volver de los submenús
-			var volver =  document.querySelectorAll('.volver-toggle');
-			for (var j=0; j < volver.length ; j++){
-				//les añadimos la funcion cerrar al parent element
-				volver[j].addEventListener("click", function(){this.parentElement.classList.toggle('active');}, false);
-		}
-		
-		
-		//tamaño del menu hamburguesa
-		var tamañoMenuTotal = document.getElementById("site-navigation").clientHeight ;
-  		var tamañoPantalla = document.querySelector("body").clientHeight ;
-		var tamañoHeader = document.querySelector("header").clientHeight ;
-		var tamañoBuscador = document.querySelector(".header-menu-top").clientHeight ;
-		var tamañoPie = document.querySelector(".header-menu-pie").clientHeight ;
-		
-		tamañoPantalla  =tamañoPantalla-tamañoHeader-tamañoBuscador-tamañoPie-2; // 5 para corregir
-		
-  
-  		
-		if(tamañoMenuTotal>tamañoPantalla){
-			//document.getElementById("site-navigation").style.height = tamañoPantallaPx/2 ;
-			
-			var canvas = document.getElementById("site-navigation");
-			canvas.setAttribute("style", "height:"+tamañoPantalla+"px");
-		   	console.log(tamañoMenuTotal+" - "+tamañoPantalla)
-		   }
+ 		}
 
+
+		//generamos todos los botones de volver de los submenús
+			const volver =  document.querySelectorAll('.volver-toggle');
+			for ( i=0; i < volver.length ; i++){
+				//les añadimos la funcion cerrar al parent element
+				volver[i].addEventListener("click", function(){this.parentElement.classList.toggle('active');}, false);
+		}
+
+		//obtenemos todos los objetos que tengan la class 'page_item_has_children'  
+		const getItemsHasChildren = document.getElementsByClassName('page_item_has_children');
+		//añadimos a sus enlaces la clase 'item-link'
+		for ( i = 0; i < getItemsHasChildren.length; i++) {
+			getItemsHasChildren[i].querySelector('a').className='item-link';
+}
+		
+
+
+		//seleccionamos todos los a que hay en los li con class 'page_item_has_children'
+		const getItemLink = document.body.querySelectorAll('.item-link');
+		//a cada uno de ellos le añadimos el botón de togglear
+		for (i = 0; i < getItemLink.length; i++) {
+	
+			const navArrow = document.createElement('span');
+			navArrow.className = 'sub-nav-toggle';
+			navArrow.innerHTML = ' <span class="right-arrow"><img src="img/arrow-right.svg" alt="habrir menú" width="20px" height="20px"></span> ';
+			getItemLink[i].parentNode.insertBefore(navArrow, getItemLink[i].nextSibling);
+		
+			if(getItemLink.hasOwnProperty(i)) {
+			getItemLink[i].onclick = function() {
+				this.parentElement.querySelector('.children').classList.toggle("active");
+				}
+			}
+		}
+
+		//al boton de togglear le añadimos la funcion de cambiar class 'active'
+		const getSubNavToogle = document.querySelectorAll('.sub-nav-toggle');
+
+		for( i in getSubNavToogle) {
+			if(getSubNavToogle.hasOwnProperty(i)) {
+				getSubNavToogle[i].onclick = function() {
+					this.parentElement.querySelector('.children').classList.toggle("active");
+				}
+			}
+		} 
+	
+		
+		
+start();
+window.onresize = start;
+function start(){
+  
+	
+		//tamaño del menu hamburguesa
+		const tamañoMenuTotal = document.getElementById("site-navigation").clientHeight ;
+		let tamañoPantalla = document.querySelector("body").clientHeight ;
+		const tamañoBuscador = document.querySelector(".header-menu-top").clientHeight ;
+		const tamañoPie = document.querySelector(".header-menu-pie").clientHeight ;
+		
+		tamañoPantalla  = tamañoPantalla-tamañoBuscador-tamañoPie-2; // 2 para corregir
+		
+		if(tamañoMenuTotal!=tamañoPantalla){
+			//document.getElementById("site-navigation").style.height = tamañoPantallaPx/2 ;
+			const canvas = document.getElementById("site-navigation");
+			canvas.setAttribute("style", "height:"+tamañoPantalla+"px");
+		   }
+		}
 		
 		
 		
