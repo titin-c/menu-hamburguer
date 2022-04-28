@@ -21,3 +21,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#458caa', end
 }
 
 .body-content{padding:10px}
+
+strong {
+    color: #ff5276;
+    font-weight: 600;
+  }
+  i{color:#36a5f0}
