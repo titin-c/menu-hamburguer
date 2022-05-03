@@ -366,12 +366,13 @@ li.page_item a {
     width: 90%;
     display: flex;
     align-items: center;
+    position: relative;
     
 }
 span.item-label {
   position: absolute;
   color: #1c252e;
-  left: 17px;
+  left: 13px;
   height: 20px;
   font-weight: bold;
   letter-spacing: 0;
@@ -416,6 +417,7 @@ li.page_item:hover a .item-label {
 li.page_item:hover a .icon-item{
   margin-right: 15px;
 }
+
 li.page_item a .icon-item {
   width: 15px;
     height:15px;
@@ -427,6 +429,12 @@ li.page_item a .icon-item {
     -o-transition: all .5s ease;
     transition: all .5s ease;
     
+}
+li.volver-toggle a .icon-item {
+  width: 20px;
+  height: 20px;
+  margin-right: 9px;
+  opacity: .5;
 }
 li.page_item.page_item_has_children {
     display: flex;
